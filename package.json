@@ -1,0 +1,23 @@
+{
+  "name": "bamazonmarketplace",
+  "version": "1.0.0",
+  "description": "Node and SQL representation of Amazon type marketplace but in text your own adventure style.",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zizuar/bamazonMarketplace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zizuar/bamazonMarketplace/issues"
+  },
+  "homepage": "https://github.com/Zizuar/bamazonMarketplace#readme",
+  "dependencies": {
+    "inquirer": "^6.2.2",
+    "mysql": "^2.16.0"
+  }
+}
