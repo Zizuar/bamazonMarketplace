@@ -1,5 +1,6 @@
 var inquirer = require("inquirer");
 var mysql = require("mysql");
+var str = '-^2.0^-=============================================-Bamazon--*--Marketplace-========================================-^2.0^-';
 
 var connection = mysql.createConnection({
         host: "localhost",
@@ -17,9 +18,10 @@ var connection = mysql.createConnection({
 function itemList(){
     connection.query("SELECT * FROM product", function(err, results){
         if(err) throw err;
+        console.log(str);
         console.log("id:\t\t\tProduct\t\t\t\t\tDepartment\t\tPrice\t\tQuantity");
-        console.log("=/\==============================================Bamazon=/\=Marketplace=========================================/\=");
-        for(let i = 0; i<results.length; i++){
+        console.log("-----------------------------------------------------------------------------------------------------------------------------");
+        for(i = 0; i<results.length; i++){
         console.log(results[i].item_id +"\t"+ results[i].product_name +"\t\t\t"+ results[i].department_name +"\t\t"+results[i].price +"\t\t"+results[i].stock_quantity);
             }
         buyItem();
@@ -51,21 +53,31 @@ function buyItem(){
             }
         }
     ]).then(function(response){
-        connection.query("SELECT item_id, price FROM product WHERE item_id = ?",
-            [response.buyId], 
+        connection.query("SELECT item_id, price, stock_quantity, product_sales FROM product WHERE item_id = ?",
+            [response.cartItem], 
             function(err, results){
                 if(err) throw err;
+                // console.log(results);
+                // console.log(results[0]);
+                // console.log(response.item_id);
+                // console.log(results[0].stock_quantity);
+                // console.log(results[0].product_sales);
+                if(response.quantity < results[0].stock_quantity){
                     console.log(response.quantity);
                     connection.query("UPDATE product SET ?, ? WHERE ?",
                     [
+                        {stock_quantity: (results[0].stock_quantity-response.quantity)},
+                        {product_sales: results[0].product_sales + ((results[0].price) * response.quantity)},
                         {item_id:response.buyId},
                     ],
                     function(err){
                         if(err) throw err;
-                        console.log("Your cart total today is " + $$,(results[0].price) * response.quantity);
+                        console.log(JSON.stringify(str));
+                        console.log("Your cart total today is $" + (results[0].price) * response.quantity);
                     });
                     connection.end();
                 }else{
+                    console.log(JSON.stringify(str));
                     console.log("Your requested item is currently out of stock. Please check back later!")
                     connection.end();
                 }
