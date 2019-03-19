@@ -1,4 +1,1 @@
-# bamazonMarketplace
-node app rip-off of Amazon utilizing mySQL and various other npm files to display store interaction in the terminal.
-
-Will do final MD file and video upload tomorrow for final release.
+﻿# bamazonMarketplaceNode app riff-off of Amazon utilizing Node and a MySQL database and various other npm files to display store interaction in the terminal.For a walkthrough please see video located on YouTube [HERE](https://youtu.be/gr6fnU0KRKc)# Customer Panel## node bamazonCustomer# Manager Console:### node bamazonManager* View Products for Sale        * View Low Inventory        * Add to Inventory        * Add New ProductWill do final MD file shortly.
